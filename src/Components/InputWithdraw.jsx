@@ -1,10 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const InputWithdraw = () => {
+  const dispatch = useDispatch();
+
   const handleWithdraw = (e) => {
     e.preventDefault();
     const amount = parseFloat(e.target.amount.value);
-    console.log(amount);
+    dispatch({ type: "WITHDRAW", payload: amount });
   };
   
   return (

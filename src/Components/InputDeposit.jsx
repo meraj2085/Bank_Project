@@ -1,10 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const InputDeposit = () => {
+  const dispatch = useDispatch();
+
   const handleDeposit = (e) => {
     e.preventDefault();
     const amount = parseFloat(e.target.amount.value);
-    console.log(amount);
+    dispatch({ type: "DEPOSIT", payload: amount });
   };
 
   return (
