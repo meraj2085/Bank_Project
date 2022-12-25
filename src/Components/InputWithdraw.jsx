@@ -1,15 +1,24 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 
 const InputWithdraw = () => {
+  const balance = useSelector((state) => state.balance);
   const dispatch = useDispatch();
 
   const handleWithdraw = (e) => {
     e.preventDefault();
     const amount = parseFloat(e.target.amount.value);
-    dispatch({ type: "WITHDRAW", payload: amount });
+    if (amount > balance) {
+      toast.error("Not enough balance");
+      return;
+    } else {
+      dispatch({ type: "WITHDRAW", payload: amount });
+      e.target.reset();
+      toast.success('Withdraw successful')
+    }
   };
-  
+
   return (
     <div className="card bg-base-100 shadow-xl">
       <div className="card-body">

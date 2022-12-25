@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
 const InputDeposit = () => {
@@ -8,6 +9,8 @@ const InputDeposit = () => {
     e.preventDefault();
     const amount = parseFloat(e.target.amount.value);
     dispatch({ type: "DEPOSIT", payload: amount });
+    toast.success("Deposit successful");
+    e.target.reset();
   };
 
   return (
